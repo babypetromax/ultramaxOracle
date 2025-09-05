@@ -1,7 +1,7 @@
 // .github/scripts/ai-code-review.cjs (The Single Source of Truth)
 
 // 1. เรียกใช้ Library ที่จำเป็นทั้งหมด
-const { GoogleGenerativeAI } = require('@google/genai');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const github = require('@actions/github');
 const fs = require('fs');
 

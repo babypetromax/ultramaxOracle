@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.13.0",
+    "@google/generative-ai": "^0.24.1",
     "chart.js": "^4.4.2",
     "date-fns": "^3.6.0",
     "dexie": "^4.0.8",
