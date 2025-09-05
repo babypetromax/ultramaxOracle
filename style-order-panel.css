@@ -1,0 +1,319 @@
+/*
+ * UltraMax POS - Order Panel Stylesheet
+ * Contains styles for the order panel (cart), payment modal,
+ * and related interactive elements.
+ */
+
+/* --- Order Panel Layout & Components --- */
+.order-panel {
+    background-color: var(--surface-color);
+    display: flex; /* << [JAXON/AURA FIX] Use Flexbox for vertical layout */
+    flex-direction: column;
+    border-left: 1px solid var(--border-color);
+    height: 100%;
+    overflow: hidden; /* << [JAXON/AURA FIX] Prevent the whole panel from scrolling */
+}
+.order-header { 
+    padding: 1rem; 
+    border-bottom: 1px solid var(--border-color); 
+    flex-shrink: 0; /* << [JAXON/AURA FIX] Prevent header from shrinking */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+.order-header h2 { font-size: 1.25rem; font-weight: 600; }
+.cart-items-container {
+    flex-grow: 1; /* << [JAXON/AURA FIX] Allow this area to grow and fill space */
+    overflow-y: auto; /* << [JAXON/AURA FIX] Add scrollbar ONLY to this area when needed */
+    padding: 0.75rem;
+    background-color: var(--order-panel-bg);
+}
+.cart-empty-message { text-align: center; padding: 2rem; color: var(--text-secondary); }
+.cart-item { 
+    display: flex;
+    align-items: center; 
+    gap: 0.5rem; 
+    padding: 0.5rem 0.75rem; /* << [JAXON/AURA FIX] Reduced vertical padding for compactness */
+    background-color: var(--surface-color); 
+    border-radius: 0.375rem; 
+    margin-bottom: 0.25rem; /* << [JAXON/AURA FIX] Reduced margin for compactness */
+    transition: background-color 0.2s ease-in-out;
+}
+.cart-item:hover {
+    background-color: var(--background-color);
+}
+.cart-item-info { flex-grow: 1; overflow: hidden;
+}
+.cart-item-name { font-weight: 600; font-size: 0.875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-item-price { font-size: 0.875rem; color: var(--text-secondary);
+}
+.cart-item-quantity { display: flex; align-items: center; background-color: var(--background-color); border-radius: 99px; flex-shrink: 0; }
+.quantity-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 1.75rem;
+    height: 1.75rem;
+    cursor: pointer;
+    font-size: 1.25rem;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.quantity-btn:hover {
+    transform: scale(1.15);
+    background-color: var(--border-color);
+}
+.quantity-btn:active {
+    transform: scale(1.05);
+}
+.quantity-value { font-weight: 500; min-width: 1.5rem; text-align: center; }
+.cart-item-total { font-weight: 600;
+    font-size: 1rem; min-width: 4rem; text-align: right; }
+.order-summary { 
+    padding: 1rem; 
+    background-color: var(--surface-color); 
+    flex-shrink: 0; /* << [JAXON/AURA FIX] Anchor summary to the bottom */
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -4px 10px -5px rgba(0,0,0,0.1); 
+}
+.summary-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+.summary-row.total { font-weight: 700;
+    font-size: 1.25rem; margin-top: 1rem; }
+.discount-input { width: 7.5rem; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 0.375rem; text-align: right; background-color: var(--background-color);
+    color: var(--text-primary); }
+.vat-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.vat-toggle span { font-weight: 500;
+}
+.charge-btn {
+    width: 100%;
+    /* DEFINITIVE FIX: Use theme variables instead of fixed success color */
+    background-color: var(--charge-btn-bg);
+    color: var(--charge-btn-text);
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: filter 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.charge-btn:hover:not(:disabled) { 
+    filter: brightness(1.2); /* Universal hover effect for all themes */
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow-hover);
+}
+.charge-btn:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+}
+body.dark .charge-btn:disabled { background-color: #4b5563;
+}
+.clear-cart-btn {
+    background: none;
+    border: none; color: var(--danger-color); cursor: pointer; font-weight: 600; font-size: 0.875rem;
+}
+.clear-cart-btn:hover {
+    text-decoration: underline;
+}
+
+/* --- Payment Modal --- */
+.payment-modal-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 580px; 
+}
+
+.payment-modal-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-modal-footer {
+    flex-shrink: 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.payment-total { text-align: center; margin-bottom: 1.5rem; }
+.payment-total p { color: var(--text-secondary);
+}
+.payment-total h3 { font-size: 2.5rem; font-weight: 700; color: var(--primary-color); }
+.payment-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+.payment-method-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem; border: 2px solid var(--border-color); border-radius: 0.5rem;
+    cursor: pointer; font-weight: 500; background-color: var(--surface-color); color: var(--text-primary); }
+.payment-method-btn .material-symbols-outlined { color: var(--text-primary); }
+.payment-method-btn.active { border-color: var(--primary-color); background-color: var(--primary-color);
+    color: white; }
+.payment-method-btn.active .material-symbols-outlined { color: white; }
+.cash-input-area { margin-top: 1.5rem;
+}
+.cash-input-area label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.cash-input { width: 100%; padding: 0.75rem; font-size: 1.25rem;
+    border: 1px solid var(--border-color); border-radius: 0.375rem; text-align: right; background-color: var(--background-color); color: var(--text-primary); }
+.confirm-payment-btn { 
+    width: 100%; 
+    /* DEFINITIVE FIX: Use theme variables here as well */
+    background-color: var(--charge-btn-bg); 
+    color: var(--charge-btn-text); 
+    padding: 1rem; 
+    border: none; 
+    border-radius: 0.5rem; 
+    font-size: 1.125rem; 
+    font-weight: 600;
+    cursor: pointer; 
+}
+.confirm-payment-btn:hover:not(:disabled) { 
+    filter: brightness(1.2); 
+}
+.confirm-payment-btn:disabled { 
+    background-color: #9ca3af; 
+}
+
+
+/* --- [PROJECT CLARITY] - New & Modified Styles --- */
+.main-display-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0;
+    border-top: 1px dashed var(--border-color);
+    margin-top: 1.5rem;
+}
+.change-display p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+.change-amount {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--warning-color);
+    line-height: 1;
+    display: block;
+}
+.qr-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+/* --- Smart Suggestion Pill Styles --- */
+.cash-suggestion-pills {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+.cash-pill {
+    flex: 1 1 0px;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.6rem 1rem;
+    border-radius: 99px; /* Pill shape */
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+}
+.cash-pill:hover, .cash-pill:focus-visible {
+    background-color: var(--primary-light);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    color: var(--primary-hover);
+}
+body.dark .cash-pill:hover, body.dark .cash-pill:focus-visible {
+    background-color: var(--secondary-light);
+    border-color: var(--primary-color);
+    color: var(--text-light);
+}
+.cash-pill:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* --- Responsive & Touch Mode --- */
+.pos-view-overlay { position: fixed; top: 3.75rem; left: 0;
+    right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.4); z-index: 499; opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; }
+.pos-view-overlay.is-visible { opacity: 1; visibility: visible; }
+
+.close-panel-btn { display: none;
+    background: none; border: none; font-size: 1.75rem; line-height: 1; cursor: pointer; color: var(--text-secondary); }
+.close-panel-btn:hover { color: var(--text-primary);
+}
+.touch-mode .quantity-btn { width: 2.25rem;
+    height: 2.25rem; font-size: 1.5rem; }
+.touch-mode .charge-btn { padding: 1.25rem; font-size: 1.25rem;
+}
+
+@media (max-width: 768px) {
+    .order-panel {
+        position: fixed; bottom: 0; right: 0;
+        top: 3.75rem;
+        width: 20rem; transform: translateX(100%);
+        z-index: 500; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    }
+    .order-panel.is-open { transform: translateX(0); }
+}
+
+/* [ULTRAMAX DEVS] Project Eon UI: START - Cart Badge & Animation */
+.cart-toggle-btn {
+    position: relative;
+    display: flex; /* Make visible by default */
+}
+
+@media (min-width: 769px) {
+    .cart-toggle-btn {
+        display: none; /* Hide on desktop where panel is always visible */
+    }
+}
+
+.cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: var(--danger-color);
+    color: white;
+    border-radius: 50%;
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--secondary-color);
+    transform: scale(1);
+    transition: transform 0.2s ease-out;
+}
+
+@keyframes cart-bounce {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.4); }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.cart-updated .cart-badge {
+    animation: cart-bounce 0.5s ease-out;
+}
+
+@keyframes cart-glow {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.cart-updated {
+    animation: cart-glow 0.8s ease-out;
+}
+/* [ULTRAMAX DEVS] Project Eon UI: END */

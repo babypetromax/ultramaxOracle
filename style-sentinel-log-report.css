@@ -1,0 +1,161 @@
+/*
+* UltraMax POS - Sentinel Log Report Stylesheet
+* Contains styles for the deep diagnostics log viewer.
+*/
+
+.sentinel-report-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Take full height of its parent card */
+    flex-grow: 1; /* Allow this container to fill the remaining space */
+    min-height: 0; /* Fix for flexbox overflow */
+    padding: 0 1.5rem 1.5rem; /* Add padding here now that card padding is removed */
+}
+
+.sentinel-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* --- Sentinel Log Report V2.2 (Deep Diagnostics) Styles --- */
+.master-detail-layout {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    gap: 1.5rem;
+    flex-grow: 1; /* CRITICAL: Make the layout grow to fill space */
+    min-height: 0; /* CRITICAL: For flexbox overflow calculation */
+    height: auto; /* Remove the fixed height calculation */
+}
+
+.log-list-panel {
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--surface-color);
+}
+
+.log-table tbody tr {
+    cursor: pointer;
+}
+
+.log-table tbody tr.selected {
+    background-color: var(--primary-color) !important;
+    color: white;
+}
+.log-table tbody tr.selected .log-timestamp,
+.log-table tbody tr.selected .log-action-name {
+    color: white !important;
+}
+
+.log-summary-compact {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 0.75rem;
+}
+
+.detail-panel {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+body.dark .detail-panel { background-color: #0d1117;
+} /* A bit darker for contrast */
+
+.detail-panel-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-secondary);
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.detail-section {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+.detail-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.detail-section strong {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+.detail-section pre {
+    background-color: var(--background-color);
+    padding: 1rem;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-size: 0.85em;
+}
+body.dark .detail-section pre { background-color: var(--secondary-color); }
+
+.stack-trace {
+    color: var(--danger-color);
+    background-color: rgba(239, 68, 68, 0.05) !important;
+}
+body.dark .stack-trace {
+    background-color: rgba(127, 29, 29, 0.2) !important;
+}
+
+
+.log-row-error { background-color: rgba(239, 68, 68, 0.1); }
+.log-row-lifecycle { background-color: rgba(59, 130, 246, 0.1);
+}
+.log-row-environment { background-color: rgba(16, 185, 129, 0.05); }
+
+body.dark .log-row-error { background-color: rgba(127, 29, 29, 0.3);
+}
+body.dark .log-row-lifecycle { background-color: rgba(37, 99, 235, 0.2); }
+body.dark .log-row-environment { background-color: rgba(5, 150, 105, 0.2);
+}
+
+.log-timestamp { font-family: 'Courier New', monospace; font-size: 0.9em; color: var(--text-secondary); }
+.log-level-badge { padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75em;
+    font-weight: bold; text-transform: capitalize; }
+.level-info { background-color: #dbeafe; color: #1e40af; }
+.level-error { background-color: #fecaca; color: #991b1b; }
+.level-lifecycle { background-color: #e0e7ff;
+    color: #3730a3; }
+.level-warn { background-color: #fef08a; color: #854d0e; }
+.level-environment { background-color: #d1fae5; color: #065f46; }
+.log-action-name { font-weight: 600;
+}
+
+.diff-viewer { font-family: 'Courier New', monospace; font-size: 0.85em; }
+.diff-entry { margin-bottom: 0.5rem; }
+.diff-key { color: var(--text-secondary); }
+.diff-value { white-space: pre-wrap;
+}
+.diff-added { background-color: rgba(16, 185, 129, 0.1); padding: 0.5rem; border-radius: 4px; }
+.diff-removed { background-color: rgba(239, 68, 68, 0.1); padding: 0.5rem;
+    border-radius: 4px; }
+.diff-changed { background-color: rgba(245, 158, 11, 0.1); padding: 0.5rem; border-radius: 4px; }
+.diff-from { color: #b91c1c;
+}
+.diff-to { color: #047857; }
+
+body.dark .level-info { background-color: #1e3a8a; color: #93c5fd; }
+body.dark .level-error { background-color: #991b1b; color: #fca5a5;
+}
+body.dark .level-lifecycle { background-color: #3730a3; color: #c7d2fe; }
+body.dark .level-warn { background-color: #78350f; color: #fde68a; }
+body.dark .level-environment { background-color: #064e3b;
+    color: #a7f3d0; }
+body.dark .diff-added { background-color: rgba(16, 185, 129, 0.2); }
+body.dark .diff-removed { background-color: rgba(239, 68, 68, 0.2);
+}
+body.dark .diff-changed { background-color: rgba(245, 158, 11, 0.2); }
+body.dark .diff-from { color: #fca5a5; }
+body.dark .diff-to { color: #6ee7b7; }

@@ -1,0 +1,88 @@
+/*
+ * UltraMax POS - Global Stylesheet (v9.95 - Project Chroma Overhaul v2.0)
+ * Contains base styles, root variables, and utility classes.
+ */
+
+/* ==========================================================================
+   1. BASE STYLES & THEME DEFINITIONS (PROJECT CHROMA)
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body, #root {
+    height: 100%;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+a, button, input, select, textarea, .slider {
+    transition: all 0.2s ease-in-out;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'opsz' 24;
+    font-size: 1.5rem;
+}
+.material-symbols-outlined.filled {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'opsz' 24;
+}
+
+
+/* ==========================================================================
+   UTILITY STYLES
+   ========================================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.sync-icon {
+    font-size: 1.25rem;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+}
+.sync-icon.synced { color: var(--success-color); }
+.sync-icon.pending { color: var(--warning-color); animation: spin 1.5s linear infinite; }
+.sync-icon.failed { color: var(--danger-color); }
+
+.keyboard-focused {
+    outline: 3px solid var(--primary-hover);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px var(--primary-color) !important;
+}
+body.dark .keyboard-focused {
+    outline-color: #a5b4fc;
+    box-shadow: 0 0 0 3px var(--primary-color) !important;
+}
+
+.hidden {
+    display: none;
+}

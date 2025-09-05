@@ -1,0 +1,59 @@
+# .github/workflows/sentinel_ci.yml
+
+name: "UltraMax Sentinel CI/CD" # ชื่องานของเรา
+
+# คำสั่ง: ให้เริ่มทำงานทุกครั้งที่มีการ "push" โค้ดมาที่ Repository นี้
+on: [push]
+
+jobs:
+  # -------- งานที่ 1: ตรวจสอบคุณภาพโดย Spectra --------
+  run-tests:
+    name: "Spectra's Quality Assurance"
+    runs-on: ubuntu-latest # ระบุว่าจะทำงานบนระบบปฏิบัติการอะไร
+
+    steps:
+      # 1. ดึงโค้ดล่าสุดลงมาในห้องทดลอง
+      - name: "Checkout Code"
+        uses: actions/checkout@v4
+
+      # 2. ตั้งค่าสภาพแวดล้อมสำหรับโปรเจกต์ (Node.js)
+      - name: "Setup Node.js environment"
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # ระบุเวอร์ชันของ Node.js
+
+      # 3. ติดตั้ง Dependencies ที่จำเป็น
+      - name: "Install Dependencies"
+        run: npm install
+
+      # 4. รันชุดทดสอบอัตโนมัติทั้งหมดของ Spectra
+      - name: "Run Automated Tests"
+        run: npm test # คำสั่งนี้จะไปเรียกใช้สคริปต์ test ในไฟล์ package.json
+
+  # -------- งานที่ 2: วิเคราะห์โค้ดด้วย AI --------
+  ai-code-review:
+    name: "Synapse's AI Code Analysis"
+    # คำสั่ง: งานนี้จะเริ่มทำก็ต่อเมื่องาน run-tests ผ่านแล้วเท่านั้น
+    needs: run-tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout Code"
+        uses: actions/checkout@v4
+
+      - name: "Setup Node.js environment"
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: "Install Dependencies for AI Script"
+        # ติดตั้ง library ที่จำเป็นสำหรับสคริปต์ AI ของเรา
+        run: npm install @google/genai @actions/github
+
+      # คำสั่ง: เรียกใช้สคริปต์พิเศษที่เราจะสร้างในขั้นตอนถัดไป
+      - name: "Analyze Code with Gemini AI"
+        run: node ./.github/scripts/ai-code-review.js
+        env:
+          # ดึงกุญแจลับจาก "ตู้เซฟ" ของ GitHub มาใช้งาน
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

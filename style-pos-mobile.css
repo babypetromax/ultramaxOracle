@@ -1,0 +1,200 @@
+/*
+ * UltraMax POS - Mobile POS View Stylesheet (Project Eon)
+ * Contains styles for the adaptive mobile-first layout.
+ */
+
+/* Main container for mobile view */
+.pos-view-mobile {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 3.75rem);
+    overflow: hidden;
+    background-color: var(--background-color);
+}
+
+.mobile-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    position: relative; /* For footer positioning */
+}
+
+/* Category Header */
+.mobile-category-header {
+    flex-shrink: 0;
+    display: flex;
+    overflow-x: auto;
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--surface-color);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.mobile-category-header::-webkit-scrollbar {
+    display: none;
+}
+
+.mobile-category-chip {
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    color: var(--text-secondary);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.mobile-category-chip.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+body.dark .mobile-category-chip.active { color: var(--text-primary); }
+
+/* Mobile Menu Grid (List View) */
+.mobile-menu-grid {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    padding-bottom: 6rem; /* Space for the floating footer */
+}
+
+.mobile-category-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+}
+
+.mobile-menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.mobile-menu-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--surface-color);
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    box-shadow: var(--card-shadow);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.mobile-menu-card:active {
+    transform: scale(0.98);
+}
+.mobile-menu-card.added-to-cart {
+    box-shadow: 0 0 15px var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+.mobile-menu-card-image {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.mobile-menu-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mobile-menu-card-info {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.mobile-menu-card-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mobile-menu-card-price {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.mobile-menu-card-add {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+.mobile-menu-card:hover .mobile-menu-card-add {
+    transform: scale(1.1);
+}
+body.dark .mobile-menu-card-add {
+    background-color: var(--secondary-light);
+    color: var(--text-light);
+}
+
+
+/* Cart Footer */
+.mobile-cart-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: var(--charge-btn-bg);
+    color: var(--charge-btn-text);
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+    animation: slideUp 0.3s ease-out;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-cart-summary {
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-cart-summary .item-count {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.mobile-cart-summary .total-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.view-cart-button {
+    background-color: rgba(255,255,255,0.2);
+    color: inherit;
+    border: none;
+    border-radius: 99px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.view-cart-button:hover {
+    background-color: rgba(255,255,255,0.3);
+}

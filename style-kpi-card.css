@@ -1,0 +1,63 @@
+/*
+* UltraMax POS - KPI Card Stylesheet
+* Contains styles for the Key Performance Indicator cards
+* used across various reports.
+*/
+
+/* --- Mini Head Quarter (Summary Report V2) --- */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 1rem;
+}
+.kpi-card {
+    background-color: var(--surface-color);
+    padding: 1.25rem;
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.kpi-card.interactive {
+    cursor: pointer;
+}
+.kpi-card.interactive:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 0 25px rgba(34, 211, 238, 0.3), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+    border-color: #22d3ee; /* cyan-400 */
+}
+.kpi-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-secondary);
+    pointer-events: none;
+}
+.kpi-card-header .material-symbols-outlined {
+    font-size: 1.75rem;
+}
+.kpi-card-title {
+    font-weight: 600;
+}
+.kpi-card-value {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+}
+.kpi-card-subvalue {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+.kpi-card-accent {
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 4px;
+}
+.kpi-card-accent.purple { background-color: #8b5cf6; }
+.kpi-card-accent.blue { background-color: #3b82f6; }
+.kpi-card-accent.yellow { background-color: #f59e0b; }
+.kpi-card-accent.red { background-color: #ef4444; }
+.kpi-card-accent.green { background-color: #22c55e;
+}

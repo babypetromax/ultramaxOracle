@@ -1,0 +1,209 @@
+/*
+ * UltraMax POS - Order Management (KDS) Stylesheet
+ * Contains all styles exclusive to the Kitchen Display System view.
+ */
+
+.order-management-screen {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 3.75rem);
+    overflow: hidden; background-color: var(--background-color);
+}
+.active-orders-section {
+    flex-grow: 1; overflow-y: auto;
+    padding: 1.5rem;
+}
+/* === [PHOENIX-FINAL] Layout Perfection for Bills Screen === */
+.completed-bills-section {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    height: 20%; /* Default collapsed height */
+    min-height: 140px; /* Ensure it's usable when collapsed */
+    overflow: hidden;
+    border-top: 2px solid var(--border-color);
+    background-color: var(--surface-color);
+    transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+}
+
+.completed-bills-section.expanded {
+    height: 80%;
+}
+
+.expand-toggle-btn {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Micro-interaction */
+}
+
+.expand-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+.kitchen-order-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+    gap: 1.5rem;
+}
+.order-card {
+    background-color: var(--surface-color);
+    border-radius: 0.75rem; box-shadow: var(--card-shadow);
+    border-left: 0.5rem solid;
+    display: flex; flex-direction: column;
+}
+.order-card:hover { box-shadow: var(--card-shadow-hover); }
+.kds-header { margin: 0 1.5rem 1.5rem 1.5rem; padding-top: 1rem; }
+.kds-header h1 { font-size: 1.75rem; font-weight: 700;
+    display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); width: 100%; }
+.kds-header.kds-tab-header { margin: 0; padding: 0; border-bottom: 1px solid var(--border-color);
+    display: flex; justify-content: space-between; align-items: center; }
+.kds-tabs { display: flex; gap: 0.5rem; padding: 0 1.5rem; }
+.kds-tab-btn { padding: 0.75rem 1rem;
+    border: none; background-color: transparent; color: var(--text-secondary); font-size: 1rem; font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; display: flex; align-items: center;
+    gap: 0.5rem; }
+.kds-tab-btn:hover { color: var(--text-primary); }
+.kds-tab-btn.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
+.kds-tab-btn .material-symbols-outlined { font-size: 1.25rem;
+}
+.kds-empty-message { text-align: center; padding: 4rem; color: var(--text-secondary);
+    font-size: 1.125rem; }
+.order-card.status-cooking { border-color: var(--warning-color); }
+.order-card.status-ready { border-color: var(--success-color); }
+.order-card-header { display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-color); }
+.order-card-title { display: flex; align-items: center; gap: 0.75rem; }
+.order-card-title h3 { font-size: 1.25rem;
+    font-weight: 700; }
+.status-badge { font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 99px; }
+.status-badge.status-cooking { background-color: var(--warning-color); color: var(--secondary-color);
+}
+.status-badge.status-ready { background-color: var(--success-color); color: white; }
+body.dark .status-badge.status-ready { color: var(--secondary-color); }
+.time-ago { font-size: 0.875rem; font-weight: 500; color: var(--text-secondary);
+}
+.order-card-items { list-style: none; padding: 0.75rem 1rem; flex-grow: 1; }
+.order-card-items li { display: flex; gap: 0.75rem; font-size: 0.95rem; margin-bottom: 0.5rem;
+}
+.item-quantity { font-weight: 600; flex-shrink: 0; }
+.item-name { color: var(--text-primary); }
+.completed-bills-list-container { display: flex; flex-direction: column; overflow: hidden; height: 100%;
+}
+.completed-bills-list { flex-grow: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+.kds-completed-table { box-shadow: none; border-radius: 0; background-color: transparent;
+}
+.kds-completed-table tbody tr:not(.cancelled-bill):hover { background-color: var(--background-color); }
+.kds-summary-footer { flex-shrink: 0; padding: 1rem 1.5rem; border-top: 1px solid var(--border-color); background-color: var(--surface-color);
+    display: flex; justify-content: space-between; align-items: center; font-size: 1.125rem; font-weight: 600; }
+.footer-total { font-size: 1.5rem; font-weight: 700; color: var(--success-color);
+}
+.expandable-row { cursor: pointer; }
+.expandable-row:not(.cancelled-bill):hover { background-color: var(--primary-light); }
+body.dark .expandable-row:not(.cancelled-bill):hover { background-color: var(--secondary-light); }
+.chevron { display: inline-block; border: solid var(--text-secondary);
+    border-width: 0 2px 2px 0; padding: 3px; margin-left: 8px; transform: rotate(45deg); transition: transform 0.2s ease-in-out; }
+.chevron.expanded { transform: rotate(-135deg);
+}
+body.dark .kds-completed-table tr.cancelled-bill { background-color: rgba(127, 29, 29, 0.2);
+    color: #9ca3af; }
+.kds-completed-table tr.cancelled-bill:hover { background-color: rgba(239, 68, 68, 0.1);
+}
+body.dark .kds-completed-table tr.cancelled-bill:hover { background-color: rgba(127, 29, 29, 0.3);
+}
+.kds-completed-table tr.reversal-bill { background-color: rgba(239, 68, 68, 0.05); }
+.kds-completed-table tr.reversal-bill td { color: var(--danger-color);
+    font-weight: 500; }
+body.dark .kds-completed-table tr.reversal-bill { background-color: rgba(127, 29, 29, 0.2);
+}
+body.dark .kds-completed-table tr.reversal-bill td { color: #fca5a5; }
+.kds-completed-table tr.cancelled-bill .chevron { display: none;
+}
+.kds-summary-footer-v2 { flex-shrink: 0; padding: 0.75rem 1.5rem;
+    border-top: 1px solid var(--border-color); background-color: var(--surface-color); display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.kds-summary-footer-v2-inner { display: flex;
+    justify-content: flex-end; align-items: center; flex-wrap: nowrap; gap: 1rem; width: 55%; min-width: 500px; }
+.summary-item-v2 { display: flex; flex-direction: column; align-items: center;
+    gap: 0.25rem; padding: 0 1rem; position: relative; text-align: center; }
+.summary-item-v2:not(:last-child)::after { content: ''; position: absolute; right: -0.5rem; top: 50%;
+    transform: translateY(-50%); width: 1px; height: 60%; background-color: var(--border-color); }
+.summary-label { font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); display: flex; align-items: center;
+    gap: 0.5rem; }
+.summary-value { font-size: 1.5rem; font-weight: 700; }
+.summary-value.qr-sales { color: #38bdf8; }
+.summary-value.cash-sales { color: #60a5fa; }
+.order-card.status-new { border-color: var(--info-color); }
+.order-card.status-delayed { border-color: var(--danger-color); }
+.status-badge.status-new { background-color: var(--info-color); color: white; }
+.status-badge.status-delayed { background-color: var(--danger-color); color: white;
+}
+.kds-summary-tags { display: flex; align-items: center; gap: 0.75rem; margin-left: 1.5rem; }
+.summary-tag { display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 0.25rem 0.75rem; border-radius: 99px; font-size: 0.9rem; font-weight: 600; line-height: 1; }
+.summary-tag .material-symbols-outlined { font-size: 1.1rem; }
+.summary-tag.status-new { background-color: var(--info-color); color: white; }
+.summary-tag.status-cooking { background-color: var(--warning-color); color: var(--secondary-color); }
+.summary-tag.status-delayed { background-color: var(--danger-color); color: white; }
+.kds-header h1 { width: 100%; }
+.kds-header-left-group { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.kds-settings-container { display: flex; align-items: center; gap: 0.5rem; margin-left: auto; }
+.kds-edit-time-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary); border-radius: 50%; width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+.kds-edit-time-btn:hover { background-color: var(--background-color); color: var(--text-primary); transform: scale(1.05); }
+.kds-time-editor { display: flex; align-items: center; gap: 0.75rem; background-color: var(--background-color); padding: 0.25rem 0.5rem; border-radius: 99px; border: 1px solid var(--border-color); animation: fadeIn 0.2s; }
+.kds-time-input { display: flex; align-items: center; gap: 0.25rem; }
+.kds-time-input .material-symbols-outlined { font-size: 1.25rem; }
+.kds-time-input .material-symbols-outlined.status-cooking { color: var(--warning-color); }
+.kds-time-input .material-symbols-outlined.status-delayed { color: var(--danger-color); }
+.kds-time-input input[type="number"] { width: 3rem; border: none; background: transparent; color: var(--text-primary); text-align: center; font-weight: 600; padding: 0.25rem; border-radius: 4px; }
+.kds-time-input input[type="number"]:focus { outline: none; background-color: var(--surface-color); }
+.kds-time-input input[type="number"]::-webkit-outer-spin-button,
+.kds-time-input input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.kds-time-input input[type="number"] { -moz-appearance: textfield; }
+.kds-time-editor .action-button { padding: 0; width: 1.75rem; height: 1.75rem; border-radius: 50%; justify-content: center; }
+.kds-time-editor .action-button .material-symbols-outlined { font-size: 1.1rem; }
+.kds-completed-table th, .kds-completed-table td { padding: 0.6rem 1rem; }
+.kds-completed-table tbody tr:not(.cancelled-bill):not(.reversal-bill):hover { background-color: var(--primary-light); transform: scale(1.01); box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: all 0.2s ease-in-out; }
+body.dark .kds-completed-table tbody tr:not(.cancelled-bill):not(.reversal-bill):hover { background-color: var(--secondary-light); }
+.expandable-row .chevron { transition: transform 0.2s ease-in-out; }
+.expandable-row .chevron.expanded { transform: rotate(-135deg); }
+
+/* === [PHOENIX-FINAL & HOTFIX] Definitive KDS Button Styling === */
+.order-card-footer { padding: 0.5rem; background-color: var(--background-color); border-top: 1px solid var(--border-color); border-radius: 0 0 0.5rem 0.5rem; margin-top: auto; }
+.order-card-footer .action-button, 
+.pos-kds-card-footer .kds-action-btn {
+    width: 100%;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border-radius: 0.5rem; /* ENSURE buttons are rounded everywhere */
+    color: white; /* Default text color for dark buttons */
+    border: none; /* [DEFINITIVE FIX] Removes unwanted default browser border */
+}
+
+/* --- Definitive Status-Based Colors --- */
+.order-card-footer .action-button.new,
+.pos-kds-card-footer .kds-action-btn.status-new {
+    background-color: var(--info-color);
+}
+.order-card-footer .action-button.cooking,
+.pos-kds-card-footer .kds-action-btn.status-cooking {
+    background-color: var(--warning-color);
+    color: #1f2937; /* Dark text for yellow button */
+}
+.order-card-footer .action-button.delayed,
+.pos-kds-card-footer .kds-action-btn.status-delayed {
+    background-color: var(--danger-color);
+}
+.order-card-footer .action-button.ready,
+.pos-kds-card-footer .kds-action-btn.status-ready {
+    background-color: var(--success-color);
+}
+
+/* --- Global Hover Effect --- */
+.order-card-footer .action-button:hover, 
+.pos-kds-card-footer .kds-action-btn:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+/* --- [CRITICAL] Restore Original Theme Specific Hover Behavior --- */
+body.theme-original .order-card-footer .action-button:hover {
+    background-color: var(--secondary-light) !important;
+    color: #ffffff !important;
+    filter: none; /* Disable global brightness filter for this specific case */
+}

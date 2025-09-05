@@ -1,0 +1,185 @@
+/* --- UltraMax POS - Project Ember: Smart Receipt Editor v2 --- */
+
+.ember-main-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 2rem;
+    height: 100%;
+    width: 100%;
+}
+
+.ember-controls-panel {
+    background-color: var(--surface-color);
+    padding: 1.5rem 2rem;
+    border-radius: 0.75rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.ember-control-group {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+.ember-control-group:last-child {
+    border-bottom: none;
+}
+
+.ember-control-group h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.ember-preview-panel {
+    position: relative; /* เพิ่มเพื่อให้ปุ่มลอยอยู่ได้ */
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: repeating-linear-gradient( -45deg, var(--background-color), var(--background-color) 10px, var(--surface-color) 10px, var(--surface-color) 20px );
+    border-radius: 0.75rem;
+    overflow-y: auto;
+}
+
+/* ปุ่มเลือกขนาดกระดาษที่ย้ายมา */
+.receipt-size-toggle-floating {
+    position: absolute;
+    top: 1.5rem; /* ระยะห่างจากด้านบน */
+    right: 1.5rem; /* ระยะห่างจากด้านขวา */
+    background-color: var(--background-color);
+    border-radius: 0.5rem;
+    display: flex;
+    box-shadow: var(--card-shadow); /* เพิ่มเงาให้ปุ่ม */
+    z-index: 10;
+}
+.receipt-size-toggle-floating button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 0.5rem;
+}
+.receipt-size-toggle-floating button:hover:not(.active) {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+}
+.receipt-size-toggle-floating button.active {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: var(--card-shadow);
+}
+body.dark .receipt-size-toggle-floating button.active {
+    color: var(--text-primary);
+}
+
+
+/* Floating Receipt Effect */
+.floating-receipt {
+    margin-top: 3rem; /* เพิ่มระยะห่างจากปุ่มด้านบน */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.1); /* เงาที่ดูมีมิติ */
+    border-radius: 4px; /* มุมโค้งเล็กน้อยเหมือนกระดาษ */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* เพิ่ม transition */
+    transform: translateY(0);
+}
+
+.floating-receipt:hover {
+    transform: translateY(-5px); /* ยกขึ้นเล็กน้อยเมื่อ hover */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(0, 0, 0, 0.15); /* เงาเข้มขึ้น */
+}
+
+/* Offline Image Preview in Controls Panel */
+.ember-image-preview-wrapper {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+}
+.ember-image-preview {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 0.25rem;
+}
+
+/* Updated Form Elements */
+.form-group.range-slider {
+    margin-bottom: 1rem;
+}
+
+.form-group.range-slider label {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: var(--background-color);
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+}
+input[type="range"]:hover::-webkit-slider-thumb {
+    background: var(--primary-hover);
+}
+
+.image-upload-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.image-upload-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+.image-upload-actions .action-button {
+    padding: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    justify-content: center;
+}
+.ember-main-grid .save-button {
+    margin-top: auto; /* Push save button to the bottom */
+    padding: 0.75rem;
+    font-size: 1rem;
+    justify-content: center;
+}
+
+@media (max-width: 992px) {
+    .ember-main-grid {
+        grid-template-columns: 1fr;
+    }
+}

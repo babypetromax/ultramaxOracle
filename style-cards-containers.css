@@ -1,0 +1,124 @@
+/*
+ * UltraMax POS - Cards & Containers Stylesheet
+ * Contains styles for reusable container components like cards, tabs, info boxes, etc.
+ */
+
+/* --- Cards --- */
+.summary-card {
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--card-shadow);
+}
+.summary-card-title {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+.summary-card-value {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.settings-card {
+    background-color: var(--surface-color);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--card-shadow);
+    max-width: 43.75rem;
+    margin: 0;
+}
+
+/* --- Tables inside Settings Cards --- */
+.settings-card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+.settings-card th, .settings-card td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+.settings-card th {
+    background-color: var(--background-color);
+    font-weight: 600;
+}
+.settings-card tr:last-child td {
+    border-bottom: none;
+}
+
+/* --- Misc Containers & Components --- */
+.tabs-container {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+.tab-button {
+    padding: .75rem 1.25rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    border-bottom: 3px solid transparent;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+.tab-button:hover:not(.active) {
+    color: var(--text-primary);
+}
+
+.status-tag {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    margin: 0 0.125rem;
+}
+.status-tag.status-completed { background-color: rgba(5, 150, 105, 0.1); color: #047857; }
+.status-tag.status-cancelled { background-color: rgba(239, 68, 68, 0.1); color: #b91c1c; }
+.status-tag.status-discount { background-color: rgba(239, 68, 68, 0.1); color: #b91c1c; }
+body.dark .status-tag.status-completed { background-color: rgba(16, 185, 129, 0.2); color: #6ee7b7; }
+body.dark .status-tag.status-cancelled { background-color: rgba(248, 113, 113, 0.2); color: #fca5a5; }
+body.dark .status-tag.status-discount { background-color: rgba(248, 113, 113, 0.2); color: #fca5a5; }
+.status-tag.status-info { background-color: #bfdbfe; color: #1e40af; }
+.status-tag.status-warning { background-color: #fef08a; color: #854d0e; }
+.status-tag.status-danger { background-color: #fecaca; color: #991b1b; }
+
+.discount-value {
+    color: var(--danger-color);
+    font-weight: 500;
+}
+
+.warning-box, .info-box {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem;
+    border-radius: .5rem;
+    margin: 1.5rem 0;
+}
+.warning-box {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+}
+.info-box {
+    background-color: rgba(245, 158, 11, 0.1);
+    border: 1px solid var(--warning-color);
+    color: #b45309;
+}
+body.dark .info-box { color: var(--warning-color); }
+
+.settings-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 2rem 0;
+}

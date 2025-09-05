@@ -1,0 +1,85 @@
+/*
+ * UltraMax POS - Category Column Stylesheet
+ * Contains styles for the category navigation sidebar in the POS view.
+ */
+
+.category-column {
+    background-color: var(--surface-color);
+    padding: 1rem;
+    border-right: 1px solid var(--border-color);
+    overflow-y: auto;
+    /* [V9.95] Hide scrollbar */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.category-column::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+
+/* --- Category Column Components --- */
+.search-bar-container { position: relative; margin-bottom: 1rem; }
+.search-bar-container .search-icon { position: absolute;
+    left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); pointer-events: none; font-size: 1.25rem; }
+.menu-search-input { width: 100%;
+    padding: 0.6rem 0.75rem 0.6rem 2.5rem; border-radius: 0.375rem; border: 1px solid var(--border-color); background-color: var(--background-color); color: var(--text-primary); font-size: 0.9rem; font-family: inherit;
+}
+.menu-search-input:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 2px var(--primary-light); }
+.menu-search-input::placeholder { color: var(--text-secondary);
+}
+.category-column h2 { font-size: 1.25rem; margin-bottom: 1rem; font-weight: 600; }
+.category-list { font-size: 1.10rem; margin-bottom: 1rem; font-weight: 300; }
+/*category-list { list-style: none; }*/
+.category-list:focus { outline: none;
+}
+.category-list-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 0.75rem; 
+    padding: 0.35rem 0.55rem; /* [V9.95] Reduced vertical padding */
+    border-radius: 0.5rem; 
+    cursor: pointer; 
+    font-weight: 500; 
+    position: relative;
+    margin-bottom: 0.1rem; /* [V9.95] Reduced margin */
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+.category-list-item.active { background-color: var(--primary-color); color: var(--text-light); }
+.category-list-item.active .material-symbols-outlined { color: var(--text-light); }
+body.dark .category-list-item.active { color: var(--text-primary);
+}
+body.dark .category-list-item.active .material-symbols-outlined { color: var(--text-primary); }
+.category-list-item.add-category-btn { color: var(--primary-color); border: 2px dashed var(--border-color); justify-content: center; }
+.category-list-item.add-category-btn:hover { border-color: var(--primary-color);
+    background-color: var(--primary-light); }
+.category-list-item:not(.active):hover {
+    background-color: var(--background-color);
+    transform: translateX(3px);
+}
+.category-list-item .material-symbols-outlined{ color: var(--text-secondary); }
+.category-list-item.active .material-symbols-outlined.favorite-icon { color: var(--warning-color); }
+.favorite-icon { color: var(--warning-color) !important;
+}
+
+/* [V9.95] Combined button styles */
+.delete-category-btn, .pin-category-btn {
+    background: none; border: none; color: var(--text-secondary); 
+    cursor: pointer; font-size: 1.25rem; line-height: 1; border-radius: 50%;
+    width: 1.75rem; height: 1.75rem;
+    display: none; align-items: center; justify-content: center;
+}
+.pin-category-btn { margin-left: auto; }
+.delete-category-btn { margin-left: 0.25rem; }
+
+.category-list-item:hover .delete-category-btn,
+.category-list-item:hover .pin-category-btn { 
+    display: flex; 
+}
+.category-list-item.active .delete-category-btn,
+.category-list-item.active .pin-category-btn { color: white; }
+
+.delete-category-btn:hover { background-color: var(--danger-color); color: white; }
+.pin-category-btn:hover { background-color: var(--background-color); }
+.pin-category-btn .material-symbols-outlined { font-size: 1.1rem; }
+.pin-category-btn .material-symbols-outlined.pinned { color: var(--primary-color); font-variation-settings: 'FILL' 1; }
+.category-list-item.active .pin-category-btn .material-symbols-outlined.pinned { color: white; }

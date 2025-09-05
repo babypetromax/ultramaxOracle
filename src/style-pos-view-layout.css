@@ -1,0 +1,90 @@
+/*
+ * UltraMax POS - POS View Layout Stylesheet
+ * Contains the main grid layout for the POS view and its responsive adjustments.
+ */
+
+/* --- POS View Layout --- */
+.pos-view {
+    display: grid;
+    /* [HYDRA V1.1 HOTFIX] Use CSS Variables for flexibility */
+    grid-template-columns: var(--category-panel-width, 15rem) 1fr var(--order-panel-width, 23.75rem);
+    height: calc(100vh - 3.75rem);
+    overflow: hidden;
+    position: relative;
+    transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Add animation */
+}
+
+/* [HYDRA V1.1 HOTFIX] Add transitions to side panels */
+.category-column, .order-panel {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
+}
+
+
+/* --- Responsive & Touch Mode Adjustments --- */
+.touch-mode .category-list-item { padding: 1rem 0.75rem; }
+.touch-mode .menu-grid { gap: 1.5rem; }
+
+@media (max-width: 1200px) { 
+    .pos-view { 
+        --category-panel-width: 12.5rem;
+        --order-panel-width: 21.25rem;
+    }
+}
+
+/* [HYDRA V1.1 HOTFIX] --- JAXON --- */
+/* Responsive Breakpoint for smaller desktops */
+@media (max-width: 992px) {
+    .pos-view {
+        /* Reset to full width as the base for this breakpoint */
+        --category-panel-width: 15rem;
+        --order-panel-width: 20rem;
+    }
+
+    /* When collapsed, set the width variable to 0 */
+    .pos-view.category-collapsed {
+        --category-panel-width: 0rem;
+    }
+    .pos-view.order-collapsed {
+        --order-panel-width: 0rem;
+    }
+    
+    .pos-kds-panel { 
+        right: var(--order-panel-width, 20rem); /* KDS panel position is now dynamic */
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+
+@media (max-width: 768px) {
+     .pos-view { 
+         grid-template-columns: 1fr; 
+         grid-template-rows: auto 1fr;
+         /* Reset variables for mobile layout */
+         --category-panel-width: 1fr;
+         --order-panel-width: 20rem; 
+     }
+    .category-column { 
+        grid-row: 1; 
+        display: flex; 
+        overflow-x: auto; 
+        padding: 0.5rem; 
+        border-right: none; 
+        border-bottom: 1px solid var(--border-color);
+        height: auto; 
+        flex-wrap: nowrap; /* Prevent wrapping on mobile */
+        transform: none !important; /* Override collapse transform */
+        visibility: visible !important; /* Override collapse visibility */
+    }
+    .category-list { 
+        display: flex; 
+        gap: 0.5rem; 
+        width: 100%;
+    }
+    .category-list-item .category-name { display: block; }
+    .menu-section { grid-row: 2;
+    }
+    .pos-kds-panel { 
+        right: 0; 
+        z-index: 501;
+    }
+}

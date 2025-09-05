@@ -1,0 +1,151 @@
+/*
+* UltraMax POS - Chronos Date Control Stylesheet
+* Contains styles for the advanced date range picker component.
+*/
+
+/*
+=================================================
+  CHRONOS CONTROL STYLES by Jaxon & Aura
+=================================================
+*/
+.chronos-container {
+  background: rgba(30, 41, 59, 0.6);
+  /* bg-slate-800 with opacity */
+  border: 1px solid rgba(51, 65, 85, 0.5); /* border-slate-700 */
+  border-radius: 0.75rem;
+  /* rounded-xl */
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.chronos-display {
+  background: rgba(15, 23, 42, 0.7); /* bg-slate-900 */
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  /* rounded-lg */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  color: var(--text-light);
+}
+.chronos-display:hover {
+  border-color: #22d3ee;
+  /* cyan-400 */
+  background: rgba(51, 65, 85, 0.7); /* bg-slate-700 */
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+}
+.chronos-display .material-symbols-outlined {
+    color: #67e8f9; /* cyan-300 */
+    transition: transform 0.3s ease;
+}
+.chronos-display:hover .material-symbols-outlined {
+    transform: scale(1.1);
+}
+
+.chronos-presets {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.chronos-preset-btn {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: #cbd5e1; /* slate-300 */
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  /* pill shape */
+  border: 1px solid #334155; /* slate-700 */
+  transition: all 0.2s ease-in-out;
+  font-size: 0.875rem;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+.chronos-preset-btn:hover {
+  background-color: #334155; /* slate-700 */
+  color: white;
+  border-color: #475569;
+  /* slate-600 */
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+  transform: translateY(-2px);
+}
+/* Glowing effect */
+.chronos-preset-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.4) 0%, rgba(34, 211, 238, 0) 70%);
+    border-radius: 50%;
+    transition: width 0.4s ease, height 0.4s ease;
+}
+.chronos-preset-btn:hover::before {
+    width: 200px;
+    height: 200px;
+}
+
+
+.chronos-picker-popover {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 50;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid #334155; /* slate-700 */
+  border-radius: 0.75rem;
+  padding: 1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Custom styles for Day Picker to match our theme */
+.rdp {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: #22d3ee !important;
+  /* cyan-400 */
+  --rdp-background-color: rgba(51, 65, 85, 0.5) !important; /* slate-700 */
+  --rdp-color: #f1f5f9;
+  /* slate-100 */
+  --rdp-accent-color-dark: #0e7490 !important; /* cyan-700 */
+}
+
+.rdp-head_cell {
+    color: #94a3b8;
+    /* slate-400 */
+}
+
+/* Smart Calendar: Glowing effect for sale days */
+.rdp-day_glowing {
+    font-weight: 700 !important;
+    color: #a5f3fc !important; /* cyan-200 */
+    position: relative;
+}
+.rdp-day_glowing::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #67e8f9;
+    /* cyan-300 */
+    box-shadow: 0 0 5px #67e8f9;
+}

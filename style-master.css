@@ -1,0 +1,150 @@
+/*
+ * UltraMax POS - Master Stylesheet (v12.0 - PROJECT PHOENIX)
+ * Final Consolidated Single Source of Truth.
+ */
+
+/* ==========================================================================
+   1. BASE STYLES & FONT DEFINITIONS
+   ========================================================================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+    --font-family: 'Sarabun', 'Inter', sans-serif;
+    --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --card-shadow-hover: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --danger-color: #dc2626;
+    --success-color: #16a34a;
+    --warning-color: #f59e0b;
+    --info-color: #3b82f6;
+}
+html, body, #root {
+    height: 100%;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   2. THEME DEFINITIONS (CHROMA COLLECTION V5.0 - PHOENIX)
+   ========================================================================== */
+
+/* --- THEME: Zenith (Light) --- */
+body.theme-zenith {
+    --primary-color: #4f46e5; --primary-hover: #4338ca; --secondary-color: #111827; --background-color: #f9fafb; --surface-color: #ffffff; --text-primary: #1f2937; --text-light: #f9fafb; --text-secondary: #6b7280; --border-color: #e5e7eb; --order-panel-bg: #f3f4f6; --charge-btn-bg: var(--success-color); --charge-btn-text: white;
+}
+/* --- THEME: UltraMax Original (Dark) --- */
+body.theme-original {
+    --primary-color: #3b82f6; --primary-hover: #2563eb; --secondary-color: #111827; --secondary-light: #374151; --background-color: #111827; --surface-color: #1f2937; --text-primary: #f9fafb; --text-light: #d1d5db; --text-secondary: #9ca3af; --border-color: #374151; --order-panel-bg: #1e293b; --charge-btn-bg: var(--success-color); --charge-btn-text: white;
+}
+/* --- THEME: Mars Dusk --- */
+body.theme-mars-dusk {
+    --primary-color: #A57865; --primary-hover: #BF9A8C; --secondary-color: #260F06; --secondary-light: #683924; --background-color: #683924; --surface-color: #A57865; --text-primary: #F2D9CE; --text-light: #F2D9CE; --text-secondary: #D4B8AB; --border-color: #562F20; --order-panel-bg: #5D3325; --charge-btn-bg: #260F06; --charge-btn-text: #F2D9CE;
+}
+/* --- THEME: Serene Gray --- */
+body.theme-serene-gray {
+    --primary-color: #E5E7EB; --primary-hover: #FFFFFF; --secondary-color: #1F2937; --secondary-light: #4b5563; --background-color: #374151; --surface-color: #4B5563; --text-primary: #F3F4F6; --text-light: #F3F4F6; --text-secondary: #D1D5DB; --border-color: #6B7280; --order-panel-bg: #4B5563; --charge-btn-bg: #E5E7EB; --charge-btn-text: #1F2937;
+}
+/* --- THEME: Avocado Bliss --- */
+body.theme-avocado-bliss {
+    --primary-color: #93A17B; --primary-hover: #A8B690; --secondary-color: #4C553C; --secondary-light: #5A6448; --background-color: #5A6448; --surface-color: #7E8A66; --text-primary: #F5F3E9; --text-light: #F5F3E9; --text-secondary: #BCC2A1; --border-color: #4C553C; --order-panel-bg: #5A6448; --charge-btn-bg: #4C553C; --charge-btn-text: #F5F3E9;
+}
+/* --- THEME: Oceanic --- */
+body.theme-oceanic {
+    --primary-color: #8AA7BC; --primary-hover: #A6BFD1; --secondary-color: #0D273D; --secondary-light: #3E6985; --background-color: #0D273D; --surface-color: #3E6985; --text-primary: #CDD7DF; --text-light: #CDD7DF; --text-secondary: #A6BFD1; --border-color: #5B7F96; --order-panel-bg: #1c3b53; --charge-btn-bg: #0D273D; --charge-btn-text: #CDD7DF;
+}
+/* --- THEME: Crimson Red --- */
+body.theme-crimson-red {
+    --primary-color: #810100; --primary-hover: #a32a29; --secondary-color: #1B1717; --secondary-light: #630000; --background-color: #630000; --surface-color: #810100; --text-primary: #EDEBBD; --text-light: #EDEBBD; --text-secondary: #C4C2A4; --border-color: #4D0000; --order-panel-bg: #750100; --charge-btn-bg: #1B1717; --charge-btn-text: #EDEBBD;
+}
+/* --- THEME: Cherry Soda (Light) --- */
+body.theme-cherry-soda {
+    --primary-color: #D68DA1; --primary-hover: #C06C84; --secondary-color: #A55166; --secondary-light: #C06C84; --background-color: #F7DAE7; --surface-color: #ffffff; --text-primary: #6C5B7B; --text-light: #ffffff; --text-secondary: #A55166; --border-color: #F0B9D1; --order-panel-bg: #FBEFF4; --charge-btn-bg: #A55166; --charge-btn-text: #ffffff;
+}
+/* --- THEME: Russian Violet (Dark) --- */
+body.theme-russian-violet {
+    --primary-color: #9570C6; --primary-hover: #B491E0; --secondary-color: #200E2A; --secondary-light: #543569; --background-color: #391B49; --surface-color: #543569; --text-primary: #EADDF3; --text-light: #EADDF3; --text-secondary: #BEA5D8; --border-color: #6D4C85; --order-panel-bg: #4A2B5E; --charge-btn-bg: #200E2A; --charge-btn-text: #EADDF3;
+}
+/* --- THEME: Mindful Morning (Light) --- */
+body.theme-mindful-morning {
+    --primary-color: #A77693; --primary-hover: #8D5C78; --secondary-color: #0F2D4D; --secondary-light: #3E5A7A; --background-color: #DED1C6; --surface-color: #ffffff; --text-primary: #0F2D4D; --text-light: #ffffff; --text-secondary: #A77693; --border-color: #CBB1BE; --order-panel-bg: #F5F1EE; --charge-btn-bg: #0F2D4D; --charge-btn-text: #ffffff;
+}
+/* --- [PHOENIX FIX] THEME: Banana Republic (REFINED V2 - Mellow Yellow Light Theme) --- */
+body.theme-banana-republic {
+    --primary-color: #EAB248;      /* Mellow Yellow Highlight */
+    --primary-hover: #F0C068;      /* Lighter Mellow Yellow */
+    --secondary-color: #5D4037;    /* Deep Coffee Brown (TopNav BG for contrast) */
+    --secondary-light: #795548;    /* Lighter Brown for TopNav hover */
+    --background-color: #FDF8E1;   /* Pineapple Cream (App BG) */
+    --surface-color: #FFFFFF;      /* White Paper (Content BG) */
+    --text-primary: #4E342E;       /* Darkest Brown (Main Text, High Contrast) */
+    --text-light: #FFFFFF;         /* White (TopNav Text) */
+    --text-secondary: #8D6E63;     /* Medium Brown (Secondary Text) */
+    --border-color: #EFEAE0;       /* Ivory Lace (Borders) */
+    --order-panel-bg: #FAF6ED;     /* Very light cream (Order Panel BG) */
+    --charge-btn-bg: #4E342E;      /* Darkest Brown (Charge Button) */
+    --charge-btn-text: #FFFFFF;    /* White (Charge Button Text) */
+}
+
+/* ==========================================================================
+   3. DEEP THEME COMPONENT OVERRIDES
+   ========================================================================== */
+.top-nav { background-color: var(--secondary-color); color: var(--text-light); }
+.top-nav .logo, .top-nav .control-btn, .top-nav .cart-toggle-btn, .nav-button { color: var(--text-light); }
+.date-display { color: var(--text-secondary); }
+.nav-button.active, .nav-button:hover { background-color: var(--secondary-light); }
+body.theme-original .nav-button.active, body.theme-original .nav-button:hover { color: #ffffff; }
+.charge-btn { background-color: var(--charge-btn-bg); color: var(--charge-btn-text); }
+.charge-btn:hover:not(:disabled) { filter: brightness(1.2); }
+.category-list-item.active { background-color: var(--primary-color); color: var(--text-light); }
+.category-list-item.active .material-symbols-outlined { color: var(--text-light); }
+body.theme-zenith .category-list-item.active, body.theme-serene-gray .category-list-item.active, body.theme-avocado-bliss .category-list-item.active { color: var(--text-light); }
+body.theme-zenith .category-list-item.active .material-symbols-outlined, body.theme-serene-gray .category-list-item.active .material-symbols-outlined, body.theme-avocado-bliss .category-list-item.active .material-symbols-outlined { color: var(--text-light); }
+body.theme-banana-republic .category-list-item.active { color: var(--text-primary); }
+body.theme-banana-republic .category-list-item.active .material-symbols-outlined { color: var(--text-primary); }
+
+/* ==========================================================================
+   4. THEMATIC KDS & SCROLLBARS (PHOENIX)
+   ========================================================================== */
+
+/* --- Thematic Scrollbars --- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--background-color); }
+::-webkit-scrollbar-thumb { background: var(--surface-color); border-radius: 4px; border: 2px solid var(--background-color); }
+::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+/* --- Thematic KDS Borders & Tags --- */
+.order-card.status-new, .pos-kds-card.status-new { border-color: var(--info-color); }
+.order-card.status-cooking, .pos-kds-card.status-cooking { border-color: var(--warning-color); }
+.order-card.status-delayed, .pos-kds-card.status-delayed { border-color: var(--danger-color); }
+.order-card.status-ready, .pos-kds-card.status-ready { border-color: var(--success-color); }
+.summary-tag.status-new { background-color: var(--info-color); }
+.summary-tag.status-cooking { background-color: var(--warning-color); }
+.summary-tag.status-delayed { background-color: var(--danger-color); }
+
+body.theme-avocado-bliss .order-card.status-new, body.theme-avocado-bliss .pos-kds-card.status-new { border-color: #F5F3E9; } body.theme-avocado-bliss .order-card.status-cooking, body.theme-avocado-bliss .pos-kds-card.status-cooking { border-color: #BCC2A1; } body.theme-avocado-bliss .order-card.status-delayed, body.theme-avocado-bliss .pos-kds-card.status-delayed { border-color: #93A17B; } body.theme-avocado-bliss .summary-tag.status-new { background-color: #F5F3E9; color: #4C553C; } body.theme-avocado-bliss .summary-tag.status-cooking { background-color: #BCC2A1; color: #4C553C; } body.theme-avocado-bliss .summary-tag.status-delayed { background-color: #93A17B; color: #F5F3E9; }
+body.theme-oceanic .order-card.status-new, body.theme-oceanic .pos-kds-card.status-new { border-color: #A6BFD1; } body.theme-oceanic .order-card.status-cooking, body.theme-oceanic .pos-kds-card.status-cooking { border-color: #8AA7BC; } body.theme-oceanic .order-card.status-delayed, body.theme-oceanic .pos-kds-card.status-delayed { border-color: #5B7F96; } body.theme-oceanic .summary-tag.status-new { background-color: #A6BFD1; color: #0D273D; } body.theme-oceanic .summary-tag.status-cooking { background-color: #8AA7BC; color: #0D273D; } body.theme-oceanic .summary-tag.status-delayed { background-color: #5B7F96; color: #CDD7DF; }
+body.theme-mars-dusk .order-card.status-new, body.theme-mars-dusk .pos-kds-card.status-new { border-color: #BF9A8C; } body.theme-mars-dusk .order-card.status-cooking, body.theme-mars-dusk .pos-kds-card.status-cooking { border-color: #A57865; } body.theme-mars-dusk .order-card.status-delayed, body.theme-mars-dusk .pos-kds-card.status-delayed { border-color: #683924; } body.theme-mars-dusk .summary-tag.status-new { background-color: #BF9A8C; color: #260F06; } body.theme-mars-dusk .summary-tag.status-cooking { background-color: #A57865; color: #260F06; } body.theme-mars-dusk .summary-tag.status-delayed { background-color: #683924; color: #F2D9CE; }
+body.theme-crimson-red .order-card.status-new, body.theme-crimson-red .pos-kds-card.status-new { border-color: #F5F4D7; } body.theme-crimson-red .order-card.status-cooking, body.theme-crimson-red .pos-kds-card.status-cooking { border-color: #EDEBBD; } body.theme-crimson-red .order-card.status-delayed, body.theme-crimson-red .pos-kds-card.status-delayed { border-color: #C4C2A4; } body.theme-crimson-red .summary-tag.status-new { background-color: #F5F4D7; color: #1B1717; } body.theme-crimson-red .summary-tag.status-cooking { background-color: #EDEBBD; color: #1B1717; } body.theme-crimson-red .summary-tag.status-delayed { background-color: #C4C2A4; color: #1B1717; }
+body.theme-cherry-soda .order-card.status-new, body.theme-cherry-soda .pos-kds-card.status-new { border-color: #F5B6CC; } body.theme-cherry-soda .order-card.status-cooking, body.theme-cherry-soda .pos-kds-card.status-cooking { border-color: #E98BA7; } body.theme-cherry-soda .order-card.status-delayed, body.theme-cherry-soda .pos-kds-card.status-delayed { border-color: #A55166; } body.theme-cherry-soda .summary-tag.status-new { background-color: #F5B6CC; color: #6C5B7B; } body.theme-cherry-soda .summary-tag.status-cooking { background-color: #E98BA7; color: #6C5B7B; } body.theme-cherry-soda .summary-tag.status-delayed { background-color: #A55166; color: #ffffff; }
+body.theme-russian-violet .order-card.status-new, body.theme-russian-violet .pos-kds-card.status-new { border-color: #BEA5D8; } body.theme-russian-violet .order-card.status-cooking, body.theme-russian-violet .pos-kds-card.status-cooking { border-color: #9570C6; } body.theme-russian-violet .order-card.status-delayed, body.theme-russian-violet .pos-kds-card.status-delayed { border-color: #543569; } body.theme-russian-violet .summary-tag.status-new { background-color: #BEA5D8; color: #200E2A; } body.theme-russian-violet .summary-tag.status-cooking { background-color: #9570C6; color: #200E2A; } body.theme-russian-violet .summary-tag.status-delayed { background-color: #543569; color: #EADDF3; }
+body.theme-mindful-morning .order-card.status-new, body.theme-mindful-morning .pos-kds-card.status-new { border-color: #CBB1BE; } body.theme-mindful-morning .order-card.status-cooking, body.theme-mindful-morning .pos-kds-card.status-cooking { border-color: #A77693; } body.theme-mindful-morning .order-card.status-delayed, body.theme-mindful-morning .pos-kds-card.status-delayed { border-color: #6A4A5B; } body.theme-mindful-morning .summary-tag.status-new { background-color: #CBB1BE; color: #0F2D4D; } body.theme-mindful-morning .summary-tag.status-cooking { background-color: #A77693; color: #ffffff; } body.theme-mindful-morning .summary-tag.status-delayed { background-color: #6A4A5B; color: #ffffff; }
+body.theme-banana-republic .order-card.status-new, body.theme-banana-republic .pos-kds-card.status-new { border-color: #64B5F6; } body.theme-banana-republic .order-card.status-cooking, body.theme-banana-republic .pos-kds-card.status-cooking { border-color: #EAB248; } body.theme-banana-republic .order-card.status-delayed, body.theme-banana-republic .pos-kds-card.status-delayed { border-color: #A1887F; } body.theme-banana-republic .summary-tag.status-new { background-color: #64B5F6; color: #FFFFFF; } body.theme-banana-republic .summary-tag.status-cooking { background-color: #EAB248; color: var(--text-primary); } body.theme-banana-republic .summary-tag.status-delayed { background-color: #A1887F; color: #FFFFFF; }
+
+/* ==========================================================================
+   5. MODAL STYLES
+   ========================================================================== */
+.theme-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 2rem; animation: fadeIn 0.3s ease-out; }
+.theme-modal-content { background-color: var(--surface-color); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 1.5rem; width: 100%; max-width: 840px; padding: 2rem 2.5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: slideUp 0.4s ease-out; max-height: 90vh; display: flex; flex-direction: column; }
+.theme-modal-header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); }
+.theme-modal-title { font-size: 1.75rem; font-weight: 700; }
+.theme-modal-subtitle { font-size: 1rem; color: var(--text-secondary); margin-top: 0.25rem; }
+.theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.5rem; padding-top: 1.5rem; overflow-y: auto; }
+.theme-card { position: relative; border-radius: 0.75rem; overflow: hidden; cursor: pointer; border: 3px solid transparent; box-shadow: var(--card-shadow); transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.theme-card:hover { transform: translateY(-5px); box-shadow: var(--card-shadow-hover); border-color: var(--primary-color); }
+.theme-card.active { border-color: var(--primary-hover); box-shadow: 0 0 20px -5px var(--primary-hover); }
+.theme-preview { height: 100px; }
+.theme-info { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background-color: var(--surface-color); color: var(--text-primary); border-top: 1px solid var(--border-color); }
+.theme-name { font-weight: 600; }
+@keyframes novaflare-pulse { 0% { transform: scale(0.5); opacity: 0; } 50% { opacity: 1; } 100% { transform: scale(1.2); opacity: 0; } }
+.theme-card .novaflare-effect { position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; background: white; border-radius: 50%; pointer-events: none; opacity: 0; transform: translate(-50%, -50%); }
+.theme-card:hover .novaflare-effect { animation: novaflare-pulse 0.75s ease-out; }

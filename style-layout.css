@@ -1,0 +1,118 @@
+/*
+ * UltraMax POS - Layout Stylesheet
+ * Contains styles for the main app container, top navigation, and responsive rules.
+ */
+
+/* ==========================================================================
+   LAYOUT STYLES
+   ========================================================================== */
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Top Navigation --- */
+.top-nav {
+    display: flex;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 0 1rem;
+    flex-shrink: 0;
+    height: 3.75rem;
+    z-index: 10;
+}
+
+.top-nav .logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-right: 2rem;
+}
+.top-nav .logo img {
+    height: 28px;
+    margin-right: 0.75rem;
+}
+
+body.dark .top-nav .logo {
+    color: #ffffff;
+}
+
+.nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.date-display {
+    text-align: right;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+body.dark .date-display { color: #d1d5db; }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .pos-view { grid-template-columns: 12.5rem 1fr 21.25rem; }
+}
+
+@media (max-width: 992px) {
+    .settings-screen, .reports-screen { flex-direction: column; }
+    .settings-nav, .reports-nav { width: 100%; height: auto; display: flex; overflow-x: auto; padding: 0.5rem; }
+    .settings-nav h2, .reports-nav h2 { display: none; }
+    .settings-nav-list, .reports-nav-list { display: flex; gap: 0.5rem; }
+    .nav-button span:not(.material-symbols-outlined) { display: none; }
+    .date-display { display: none; }
+}
+
+/* ==========================================================================
+   PROJECT CHROMA - THEME SELECTOR STYLES
+   ========================================================================== */
+.theme-selector-container {
+    position: relative;
+}
+.theme-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background-color: var(--surface-color);
+    border-radius: 0.5rem;
+    box-shadow: var(--card-shadow-hover);
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    z-index: 100;
+    border: 1px solid var(--border-color);
+    animation: fadeIn 0.2s ease-out;
+}
+.theme-option {
+    background-color: transparent;
+    border: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+.theme-option:hover {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+}
+.theme-option.active {
+    background-color: var(--primary-color);
+    color: var(--text-light) !important; /* Use important to override other theme specific text colors */
+}
+.theme-option .material-symbols-outlined {
+    font-size: 1.5rem;
+}

@@ -1,0 +1,9 @@
+/*
+ * UltraMax POS - POS View Stylesheet (DEPRECATED)
+ * This file's content has been split into multiple, more specific files:
+ * - style-pos-view-layout.css
+ * - style-pos-category-column.css
+ * - style-pos-menu-grid.css
+ * - style-pos-overlays.css
+ * This file is kept to avoid breaking imports during transition and will be removed.
+ */

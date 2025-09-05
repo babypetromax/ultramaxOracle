@@ -1,0 +1,364 @@
+/*
+ * UltraMax POS - Reports Stylesheet (v9.08 - Refactored)
+ * This file contains all styles exclusive to the reports section.
+ */
+
+/* ==========================================================================
+   REPORT VIEW STYLES
+   ========================================================================== */
+
+/* --- Base Layout for Reports --- */
+.reports-screen {
+    display: flex;
+    height: calc(100vh - 3.75rem);
+    overflow: hidden;
+}
+.reports-nav {
+    width: 15.625rem;
+    background-color: var(--report-nav-bg);
+    padding: 1rem;
+    border-right: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+.reports-nav-list { list-style: none; }
+.reports-nav-item {
+    display: flex;
+    align-items: center; gap: 0.75rem; padding: 0.75rem;
+    border-radius: 0.5rem; cursor: pointer; font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+.reports-nav-item.active {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+body.dark .reports-nav-item.active {
+    color: var(--text-primary);
+}
+.reports-nav-item:not(.active):hover {
+    background-color: var(--background-color);
+}
+.report-content {
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    background-color: var(--background-color);
+}
+.report-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+}
+.report-header h1 { font-size: 2rem; font-weight: 700; }
+
+.chart-container {
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 2rem;
+}
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--surface-color);
+    box-shadow: var(--card-shadow);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.report-table th, .report-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+.report-table th { background-color: var(--background-color); font-weight: 600; }
+.report-table tr:last-child td { border-bottom: none; }
+
+.report-table tr.cancelled-bill,
+.kds-completed-table tr.cancelled-bill {
+    background-color: rgba(239, 68, 68, 0.05);
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    cursor: default;
+}
+
+body.dark .report-table tr.cancelled-bill,
+body.dark .kds-completed-table tr.cancelled-bill {
+    background-color: rgba(127, 29, 29, 0.2);
+    color: #9ca3af;
+}
+
+.report-table tr.cancelled-bill:hover,
+.kds-completed-table tr.cancelled-bill:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+body.dark .report-table tr.cancelled-bill:hover,
+body.dark .kds-completed-table tr.cancelled-bill:hover {
+    background-color: rgba(127, 29, 29, 0.3);
+}
+
+.report-table tr.reversal-bill,
+.kds-completed-table tr.reversal-bill {
+    background-color: rgba(239, 68, 68, 0.05);
+}
+.report-table tr.reversal-bill td,
+.kds-completed-table tr.reversal-bill td {
+    color: var(--danger-color);
+    font-weight: 500;
+}
+body.dark .report-table tr.reversal-bill,
+body.dark .kds-completed-table tr.reversal-bill {
+    background-color: rgba(127, 29, 29, 0.2);
+}
+body.dark .report-table tr.reversal-bill td,
+body.dark .kds-completed-table tr.reversal-bill td {
+    color: #fca5a5;
+}
+
+.report-table tr.cancelled-bill .chevron,
+.kds-completed-table tr.cancelled-bill .chevron {
+    display: none;
+}
+
+/* --- Responsive Report Styles --- */
+@media (max-width: 992px) {
+    .reports-screen { flex-direction: column; }
+    .reports-nav { width: 100%; height: auto; display: flex; overflow-x: auto; padding: 0.5rem; }
+    .reports-nav h2 { display: none; }
+    .reports-nav-list { display: flex; gap: 0.5rem; }
+}
+
+/* --- Misc Report Styles --- */
+.reports-nav h2 { font-size: 1.25rem; margin-bottom: 1.5rem; }
+.report-controls { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+}
+.report-controls input[type="date"], .report-controls select, .report-controls .action-button { padding: 0.5rem; border-radius: 0.375rem; border: 1px solid var(--border-color); background-color: var(--surface-color); color: var(--text-primary);
+}
+body.dark .report-controls .action-button:not(.secondary) { color: var(--text-primary); }
+.control-group { display: flex; flex-direction: column; }
+.control-group label { font-size: 0.875rem; color: var(--text-secondary);
+    margin-bottom: 0.25rem; }
+.summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+
+.date-range-selector { display: flex; align-items: center; gap: 1rem; }
+.date-range-selector input { padding: 0.5rem; border: 1px solid var(--border-color); border-radius: .375rem;
+}
+.report-summary-footer { background-color: var(--surface-color);
+    border-top: 1px solid var(--border-color); padding: 1rem 2rem; margin: 2rem -2rem -2rem -2rem; display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap;
+}
+.report-summary-footer-inner { display: flex; justify-content: flex-end; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.report-summary-footer .summary-item-v2 { align-items: flex-end; padding: 0;
+}
+.report-summary-footer .summary-item-v2:not(:last-child)::after { display: none; }
+.report-summary-footer .summary-label { justify-content: flex-end; }
+.cancellation-badge-v2 { background-color: var(--danger-color); color: white; font-size: 0.7rem; font-weight: 700;
+    border-radius: 50%; width: 1.25rem; height: 1.25rem; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
+.report-view-toggle { display: flex; gap: 0.5rem;
+    background-color: var(--surface-color); padding: 0.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow); max-width: fit-content; }
+.report-view-toggle button { display: flex; align-items: center;
+    gap: 0.5rem; padding: 0.5rem 1rem; border: none; border-radius: 0.375rem; cursor: pointer; font-weight: 600; background-color: transparent; color: var(--text-secondary);
+}
+.report-view-toggle button:hover { background-color: var(--background-color); }
+.report-view-toggle button.active { background-color: var(--primary-color); color: white; }
+body.dark .report-view-toggle button.active { color: var(--text-primary);
+}
+
+/* --- Summary Report Dual Chart Layout --- */
+.summary-charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.chart-wrapper {
+    background-color: var(--surface-color);
+    border-radius: 0.75rem;
+    box-shadow: var(--card-shadow);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 450px;
+}
+
+.chart-header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.chart-header-controls h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.expand-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: 50%;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.expand-btn:hover {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    transform: scale(1.05);
+}
+.expand-btn .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+.chart-render-area {
+    flex-grow: 1;
+    position: relative; /* Needed for chart.js responsiveness */
+}
+
+.chart-empty-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-secondary);
+}
+
+/* --- Chart Expansion Modal --- */
+.chart-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease-out;
+}
+.chart-modal-content {
+    background-color: var(--surface-color);
+    width: 90%;
+    height: 90%;
+    max-width: 1400px;
+    border-radius: 0.75rem;
+    box-shadow: var(--card-shadow-hover);
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease-out;
+}
+.chart-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+.chart-modal-header h2 {
+    font-size: 1.5rem;
+}
+.chart-modal-body {
+    flex-grow: 1;
+    padding: 1.5rem;
+    overflow: hidden;
+    position: relative;
+}
+.chart-modal-body .chart-render-area {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+    .summary-charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- [PROJECT ORACLE] - AI Anomaly Detection Card Styles --- */
+.oracle-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.oracle-loading {
+    grid-column: 1 / -1; /* Span full width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 2rem;
+    background-color: var(--surface-color);
+    border-radius: 0.75rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.oracle-card {
+    background-color: var(--surface-color);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    border-left: 5px solid;
+    box-shadow: var(--card-shadow);
+}
+
+.oracle-card.severity-high { border-color: var(--danger-color); }
+.oracle-card.severity-medium { border-color: var(--warning-color); }
+.oracle-card.severity-low { border-color: var(--info-color); }
+
+.oracle-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.oracle-card-header .material-symbols-outlined {
+    font-size: 1.75rem;
+}
+
+.oracle-card.severity-high .material-symbols-outlined { color: var(--danger-color); }
+.oracle-card.severity-medium .material-symbols-outlined { color: var(--warning-color); }
+.oracle-card.severity-low .material-symbols-outlined { color: var(--info-color); }
+
+
+
+
+.oracle-card-header h4 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.oracle-finding {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.oracle-recommendation {
+    font-size: 0.9rem;
+    background-color: var(--background-color);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    color: var(--text-secondary);
+}
+.oracle-recommendation strong {
+    color: var(--text-primary);
+}

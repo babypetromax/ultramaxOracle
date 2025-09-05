@@ -1,0 +1,108 @@
+/*
+ * UltraMax POS - Receipt Stylesheet
+ * Contains styles for the receipt modal, preview, and print layout.
+ */
+
+/* --- Receipt Modal --- */
+.receipt-modal-overlay { z-index: 1001;
+}
+.receipt-modal-content { background-color: var(--background-color); padding: 1rem; border-radius: 0.75rem; width: 95vw; max-width: 950px; height: 90vh; display: flex; gap: 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+.receipt-controls { display: flex; flex-direction: column; gap: 1rem; padding: 1rem; background-color: var(--surface-color); border-radius: 0.5rem;
+    width: 240px; flex-shrink: 0; }
+.receipt-controls h3 { margin-bottom: 0.5rem; }
+.receipt-size-toggle { display: flex; background-color: var(--background-color); border-radius: 0.375rem; padding: 0.25rem;
+}
+.receipt-size-toggle button { flex-grow: 1; padding: 0.5rem; border: none; background: transparent; cursor: pointer; border-radius: 0.25rem; font-weight: 500;
+}
+.receipt-size-toggle button.active { background-color: var(--primary-color); color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.receipt-preview { flex-grow: 1; overflow: auto;
+    background: repeating-linear-gradient(45deg, #444, #444 10px, #555 10px, #555 20px); padding: 2rem; border-radius: 0.5rem; display: flex; justify-content: center;
+}
+.receipt-paper { background: white; color: black; font-family: 'Courier New', 'Consolas', monospace; padding: 0.25rem; padding-top: var(--receipt-top-margin, 0.25rem); padding-bottom: var(--receipt-bottom-margin, 0.25rem);
+    line-height: var(--receipt-line-spacing, 1.2); margin: 0 auto; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+.receipt-paper.receipt-58mm { width: 219px; }
+.receipt-paper.receipt-80mm { width: 302px;
+}
+.receipt-header-content { text-align: center; margin-bottom: 0.25rem; }
+.receipt-logo { max-width: var(--receipt-logo-max-width, 80%); height: auto; margin: 4px auto; display: block;
+}
+.receipt-header-content p { font-size: 10px; line-height: 1.2; margin: 0; color: black; }
+.receipt-info { display: flex; justify-content: space-between; font-size: 10px;
+    margin-bottom: 4px; color: black; }
+.receipt-info span { color: black; }
+.receipt-hr { border: none; border-top: 1px dashed black; margin: 4px 0;
+}
+.receipt-items-table, .receipt-summary-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+.receipt-items-table th, .receipt-items-table td,
+.receipt-summary-table th, .receipt-summary-table td { padding: 1px 0;
+    vertical-align: top; color: black; }
+.receipt-items-table th { text-align: left; border-bottom: 1px solid black; }
+.receipt-items-table td, .receipt-summary-table td:first-child { text-align: left;
+}
+.receipt-items-table .col-qty, .receipt-items-table .col-price, .receipt-items-table .col-total { text-align: right; }
+.receipt-items-table .col-qty { padding: 0 4px; }
+.receipt-summary-table td:last-child { text-align: right;
+}
+.receipt-summary-table .total strong { font-size: 12px; color: black; }
+.receipt-payment-separator td { padding: 3px 0 !important; }
+.receipt-footer { text-align: center;
+    margin-top: 4px; font-size: 10px; }
+.receipt-footer p { color: black; }
+.receipt-promo { max-width: var(--receipt-promo-max-width, 100%); height: auto; margin-top: 4px; display: block;
+}
+
+/* --- KDS Completed Bill Details --- */
+.receipt-details-cell { padding: 0 !important; background-color: var(--background-color); }
+body.dark .receipt-details-cell { background-color: #273345; }
+.receipt-details-content { padding: 1rem 1.5rem;
+}
+.receipt-item-list { list-style: none; margin-bottom: 1rem; }
+.receipt-item-list li { display: flex; justify-content: space-between; padding: 0.25rem 0;
+}
+.receipt-summary { border-top: 1px dashed var(--text-secondary); padding-top: 1rem; font-weight: 500; }
+.receipt-summary div { display: flex; justify-content: space-between; margin-bottom: 0.25rem;
+}
+.receipt-total { font-weight: 700; font-size: 1.1em; margin-top: 0.5rem; }
+.receipt-payment-info {
+    border-top: 1px dashed var(--text-secondary);
+    padding-top: 1rem;
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+.receipt-payment-info div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+}
+.receipt-payment-info span:last-child {
+    color: var(--text-secondary);
+}
+
+/* --- PRINTING STYLES --- */
+@media print {
+    body * { visibility: hidden;
+    }
+    #printable-receipt, #printable-receipt * { visibility: visible; }
+    @page { margin: 5mm;
+    }
+    body { background-color: #fff !important; }
+    body.printing-receipt-58mm #printable-receipt { width: 58mm;
+    }
+    body.printing-receipt-80mm #printable-receipt { width: 80mm; }
+    #printable-receipt {
+        position: absolute;
+        left: 0; top: 0; margin: 0; padding: 0;
+        width: 100%; box-shadow: none; font-size: 9pt;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    #printable-receipt, #printable-receipt * { color: #000 !important; }
+}
+.cash-drawer-kick-command { display: none;
+}
+@media print {
+  .cash-drawer-kick-command { display: block; position: absolute; bottom: 0;
+  }
+}

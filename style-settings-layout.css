@@ -1,0 +1,82 @@
+/*
+ * UltraMax POS - Settings Layout Stylesheet
+ * Contains styles for the main layout of the settings view.
+ */
+
+.settings-screen {
+    display: flex;
+    height: calc(100vh - 3.75rem);
+    overflow: hidden;
+}
+.settings-nav {
+    width: 15.625rem;
+    background-color: var(--report-nav-bg);
+    padding: 1rem;
+    border-right: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+.settings-nav h2 { font-size: 1.25rem; margin-bottom: 1.5rem; }
+.settings-nav-list { list-style: none; }
+.settings-nav-item {
+    display: flex;
+    align-items: center; gap: 0.75rem; padding: 0.75rem;
+    border-radius: 0.5rem; cursor: pointer; font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+.settings-nav-item.active {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+body.dark .settings-nav-item.active {
+    color: var(--text-primary);
+}
+.settings-nav-item:not(.active):hover {
+    background-color: var(--background-color);
+}
+.settings-content {
+    flex-grow: 1;
+    padding: 1.5rem; /* Reduced padding slightly */
+    overflow-y: auto;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+}
+.settings-page-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+    flex-shrink: 0;
+}
+.settings-page-header h1 { font-size: 2rem; font-weight: 700; }
+
+/* --- Sentinel Command Layout --- */
+.sentinel-command-layout {
+    display: grid;
+    grid-template-columns: minmax(400px, 1.5fr) 2fr;
+    gap: 1.5rem;
+    height: 100%;
+    flex-grow: 1; /* Allow grid to fill space */
+    min-height: 0; /* Important for nested flex/grid */
+}
+
+.log-viewer-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0 !important; /* Remove card padding to allow content to control it */
+}
+
+.log-viewer-card > .report-header {
+    padding: 1rem 1.5rem;
+    flex-shrink: 0;
+}
+.log-viewer-card > .report-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+@media (max-width: 1200px) {
+    .sentinel-command-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+}
