@@ -1,13 +1,14 @@
-// .github/scripts/ai-code-review.js
+// .github/scripts/ai-code-review.cjs (The Single Source of Truth)
 
+// 1. เรียกใช้ Library ที่จำเป็นทั้งหมด
 const { GoogleGenerativeAI } = require('@google/genai');
 const github = require('@actions/github');
 const fs = require('fs');
 
-// ฟังก์ชันหลักที่จะทำงาน
+// 2. ฟังก์ชันหลักที่จะทำงาน
 async function run() {
   try {
-    // 1. รับข้อมูลจาก GitHub Actions
+    // รับข้อมูลลับจาก GitHub Actions
     const geminiApiKey = process.env.GEMINI_API_KEY;
     const githubToken = process.env.GITHUB_TOKEN;
     const context = github.context;
@@ -16,16 +17,15 @@ async function run() {
       throw new Error('Gemini API Key is not set.');
     }
 
-    // 2. เตรียมเครื่องมือสำหรับคุยกับ Gemini และ GitHub
+    // เตรียมเครื่องมือสำหรับคุยกับ Gemini และ GitHub
     const genAI = new GoogleGenerativeAI(geminiApiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const octokit = github.getOctokit(githubToken);
 
-    // หมายเหตุ: ในโลกจริงเราจะดึงเฉพาะโค้ดที่เปลี่ยนแปลง
-    // แต่สำหรับตัวอย่างนี้ เราจะอ่านไฟล์ README.md เป็นตัวแทน
+    // อ่านไฟล์ README.md เป็นตัวแทนของโค้ดที่จะรีวิว
     const codeToReview = fs.readFileSync('README.md', 'utf8');
 
-    // 3. สร้าง Prompt ที่จะส่งให้ AI
+    // สร้าง Prompt ที่จะส่งให้ AI
     const prompt = `
       Act as: a Senior Software Architect at "UltraMax Devs".
       Analyze this code snippet:
@@ -33,17 +33,17 @@ async function run() {
       ${codeToReview}
       ---
       Your Task: Review this code based on our "Golden Rules".
-      1. Design First: Does this code align with our principles?
-      2. Stability First: Can you spot any potential issues?
-      3. Minimal Code, Maximum Impact: Is this code efficient?
+      1. Design First
+      2. Stability First
+      3. Minimal Code, Maximum Impact
       Output Format: Provide feedback in Markdown format, starting with a summary verdict.
     `;
 
-    // 4. ส่งไปให้ Gemini วิเคราะห์
+    // ส่งไปให้ Gemini วิเคราะห์
     const result = await model.generateContent(prompt);
     const aiResponse = await result.response.text();
 
-    // 5. นำคำตอบที่ได้ไปโพสต์เป็นคอมเมนต์บน GitHub
+    // นำคำตอบที่ได้ไปโพสต์เป็นคอมเมนต์บน GitHub
     await octokit.rest.repos.createCommitComment({
       owner: context.repo.owner,
       repo: context.repo.repo,
