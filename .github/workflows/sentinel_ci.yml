@@ -52,7 +52,7 @@ jobs:
 
       # คำสั่ง: เรียกใช้สคริปต์พิเศษที่เราจะสร้างในขั้นตอนถัดไป
       - name: "Analyze Code with Gemini AI"
-        run: node ./.github/scripts/ai-code-review.js
+        run: node ./.github/scripts/ai-code-review.cjs
         env:
           # ดึงกุญแจลับจาก "ตู้เซฟ" ของ GitHub มาใช้งาน
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
