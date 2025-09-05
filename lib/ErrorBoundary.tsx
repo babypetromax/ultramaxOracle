@@ -50,7 +50,7 @@ class ErrorBoundary extends Component<Props, State> {
                 <h4>[SENTINEL] ระบบตรวจพบข้อผิดพลาดร้ายแรงใน Component: {this.props.componentName}</h4>
                 <p>
                     Component ไม่สามารถแสดงผลได้ แต่ระบบหลักยังคงทำงานอยู่
-                    กรุณาไปที่หน้า "รายงาน" > "ประวัติระบบ (วินิจฉัย)" เพื่อส่งออกไฟล์ Log ให้ทีม Engineer
+                    กรุณาไปที่หน้า "รายงาน ประวัติระบบ (วินิจฉัย)" เพื่อส่งออกไฟล์ Log ให้ทีม Engineer
                 </p>
                 <pre style={{ marginTop: '1rem', fontSize: '0.8em', whiteSpace: 'pre-wrap', background: 'rgba(0,0,0,0.2)', padding: '0.5rem', borderRadius: '4px' }}>
                     Error Message: {this.state.error?.message}
