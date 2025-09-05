@@ -14,7 +14,6 @@
     "date-fns": "^3.6.0",
     "dexie": "^4.0.8",
     "dexie-export-import": "^4.0.7",
-    "framer-motion": "^11.3.8",
     "idb": "^8.0.3",
     "react": "^19.1.1",
     "react-chartjs-2": "^5.2.0",
