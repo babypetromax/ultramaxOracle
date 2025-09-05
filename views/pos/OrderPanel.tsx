@@ -55,7 +55,7 @@ const OrderPanel: React.FC<{ className?: string }> = ({ className }) => {
         <aside className={`order-panel ${isOrderPanelOpen ? 'is-open' : ''} ${className || ''}`}>
             <header className="order-header">
                 {/* [CHIMERA PHASE 4] Display total item count from the store */}
-                <h2>ออเดอร์ปัจจุบัน ({totalItems} รายการ)</h2>
+                <h2>ตะกร้าสินค้า ({totalItems} รายการ)</h2>
                  <div className="order-header-actions">
                     {cart.length > 0 && <button className="clear-cart-btn" onClick={clearCart}>ล้างทั้งหมด</button>}
                     <button className="close-panel-btn" onClick={() => setIsOrderPanelOpen(false)}>&times;</button>
